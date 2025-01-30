@@ -42,7 +42,7 @@ public class FoodMachineController {
     }
 
     @GetMapping("/{id}")
-    public UserDataEntity getByUserId(@PathVariable Integer id) {
+    public UserDataEntity getByUserId(@PathVariable String id) {
         log.info("data fetched with id " + id);
         return userServiceImpl.getByUserId(id);
     }
@@ -54,7 +54,7 @@ public class FoodMachineController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDataEntity> updateItem(@PathVariable Integer id, @RequestBody UserDataEntity userDataEntity) {
+    public ResponseEntity<UserDataEntity> updateItem(@PathVariable String id, @RequestBody UserDataEntity userDataEntity) {
         Optional<UserDataEntity> optionalItem = userServiceImpl.updateItem(id, userDataEntity);
         if (optionalItem.isPresent()) {
             log.info("Data updated successfully");
@@ -66,7 +66,7 @@ public class FoodMachineController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteItem(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteItem(@PathVariable String id) {
         boolean isDeleted = userServiceImpl.deleteUser(id);
         if (isDeleted) {
             return ResponseEntity.ok("Item deleted successfully.");
